@@ -1,27 +1,24 @@
 import React from "react";
 
-const Paciente = () => {
+const Paciente = ({ paciente }) => {
+  const { nombre, propietario, email, fecha, sintomas } = paciente;
   return (
     <div className="bg-white px-5 m-3 py-10 rounded-md">
       <p className="uppercase font-bold text-gray-700 mb-3">
-        Nombre: <span className="font-normal normal-case">Coopercin</span>
+        Nombre: <span className="font-normal normal-case">{nombre}</span>
       </p>{" "}
       <p className="uppercase font-bold text-gray-700 mb-3">
-        Propietario: <span className="font-normal normal-case">Sergio</span>
+        Propietario:{" "}
+        <span className="font-normal normal-case">{propietario}</span>
       </p>{" "}
       <p className="uppercase font-bold text-gray-700 mb-3">
-        email:{" "}
-        <span className="font-normal normal-case">correo@correo.com</span>
+        email: <span className="font-normal normal-case">{email}</span>
       </p>{" "}
       <p className="uppercase font-bold text-gray-700 mb-3">
-        Fecha:{" "}
-        <span className="font-normal normal-case">1 de diciembre de 2022</span>
+        Fecha: <span className="font-normal normal-case">{fecha}</span>
       </p>{" "}
       <p className="uppercase font-bold text-gray-700 mb-3">
-        Síntomas:{" "}
-        <span className="font-normal normal-case">
-          El gato no come. Sólo duerme
-        </span>
+        Síntomas: <span className="font-normal normal-case">{sintomas}</span>
       </p>
     </div>
   );

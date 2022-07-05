@@ -1,12 +1,43 @@
-function Formulario() {
+import { useState } from "react";
+import Error from "./Error";
+
+function Formulario({ pacientes, setPacientes }) {
+  const [nombre, setNombre] = useState("");
+  const [propietario, setPropietario] = useState("");
+  const [email, setEmail] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [sintomas, setSintomas] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    const objetoPaciente = { nombre, propietario, email, fecha, sintomas };
+
+    setPacientes([...pacientes, objetoPaciente]);
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+  };
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-center text-3xl">Seguimiento pacientes</h2>
       <p className="text-lg mt-5 text-center mb-10">
-        Añade pacientes y {""}{" "}
+        Añade pacientes y{" "}
         <span className="text-indigo-600 font-bold">Administralos</span>
       </p>
-      <form className="bg-white shadow-md rounded-md py-5 px-5">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-md py-5 px-5"
+      >
+        {error && <Error mensaje="todos los campos son obligatorios" />}
         <div className="mb-5">
           <label
             htmlFor="mascota"
@@ -19,6 +50,8 @@ function Formulario() {
             type="text"
             id="mascota"
             placeholder="Nombre de la mascota"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -33,6 +66,8 @@ function Formulario() {
             type="text"
             id="propietario"
             placeholder="Nombre del propietario"
+            value={propietario}
+            onChange={(e) => setPropietario(e.target.value)}
           />
         </div>{" "}
         <div className="mb-5">
@@ -47,11 +82,13 @@ function Formulario() {
             type="email"
             id="email"
             placeholder="Email del propietario"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-5">
           <label
-            htmlFor="alta"
+            htmlFor="fecha"
             className="block text-gray-700 uppercase font-bold"
           >
             Fecha de alta
@@ -59,7 +96,9 @@ function Formulario() {
           <input
             className="border-2 w-full p-2 mt-2 placeholder-indigo-600 rounded-md"
             type="date"
-            id="alta"
+            id="fecha"
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -74,6 +113,8 @@ function Formulario() {
             type="text"
             id="sintomas"
             placeholder="Describe los sintomas"
+            value={sintomas}
+            onChange={(e) => setSintomas(e.target.value)}
           />
         </div>
         <input
