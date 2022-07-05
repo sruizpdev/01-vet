@@ -9,6 +9,12 @@ function Formulario({ pacientes, setPacientes }) {
   const [sintomas, setSintomas] = useState("");
   const [error, setError] = useState(false);
 
+  const generarId = () => {
+    const aleatorio = Math.random(20).toString().substring(2);
+    const fecha = Date.now().toString(36);
+    return aleatorio + fecha;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([nombre, propietario, email, fecha, sintomas].includes("")) {
@@ -16,7 +22,14 @@ function Formulario({ pacientes, setPacientes }) {
       return;
     }
     setError(false);
-    const objetoPaciente = { nombre, propietario, email, fecha, sintomas };
+    const objetoPaciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas,
+      id: generarId(),
+    };
 
     setPacientes([...pacientes, objetoPaciente]);
     setNombre("");

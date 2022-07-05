@@ -1,6 +1,5 @@
-import React from "react";
-
-const Paciente = ({ paciente }) => {
+const Paciente = ({ paciente, key }) => {
+  console.log(key);
   const { nombre, propietario, email, fecha, sintomas } = paciente;
   return (
     <div className="bg-white px-5 m-3 py-10 rounded-md">

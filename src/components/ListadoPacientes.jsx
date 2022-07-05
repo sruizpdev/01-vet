@@ -1,4 +1,3 @@
-import React from "react";
 import Paciente from "./Paciente";
 
 function ListadoPacientes({ pacientes }) {
@@ -10,7 +9,7 @@ function ListadoPacientes({ pacientes }) {
         <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
       </p>
       {pacientes.map((paciente) => (
-        <Paciente paciente={paciente} />
+        <Paciente key={paciente.id} paciente={paciente} />
       ))}
     </div>
   );
